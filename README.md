@@ -1,12 +1,12 @@
-# Social Baluni Public School - Website Restructuring
+# Social Baluni Public School - Landing Page
 
-> A modern, scalable landing page for Social Baluni Public School built with Next.js and TypeScript
+> Modern landing page for Social Baluni Public School. Built with Next.js, TypeScript, and Tailwind CSS. Features responsive dual-header navbar, hero section, and comprehensive school information with smooth animations.
 
 ## 🎯 Project Overview
 
-This project delivers a complete website restructuring for Social Baluni Public School (SBPS), implementing the design principles: **"Clarity over clutter. Hierarchy over decoration."**
+A complete, production-ready landing page for Social Baluni Public School (SBPS) implementing the design philosophy: **"Clarity over clutter. Hierarchy over decoration."**
 
-The website serves as a digital platform representing:
+The website represents:
 - **3,000+ students** across three schools (Boarding, Defence Academy, IIT/NEET)
 - **400+ faculty and staff members**
 - Comprehensive academics, IIT/NDA preparation, and sports programs
@@ -15,26 +15,30 @@ The website serves as a digital platform representing:
 
 ```
 sbps-website/
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx          # Root layout with metadata
-│   │   ├── page.tsx            # Main landing page
-│   │   └── globals.css         # Global styles & Tailwind directives
-│   ├── components/
-│   │   ├── Navbar.tsx          # Navigation header (mobile-responsive)
-│   │   ├── Hero.tsx            # Hero section with CTAs
-│   │   ├── QuickActions.tsx     # Quick navigation cards
-│   │   ├── About.tsx           # Why Choose SBPS section
-│   │   ├── Academics.tsx       # Academic programs showcase
-│   │   ├── IITNDASection.tsx    # IIT/NDA preparation details
-│   │   ├── Sports.tsx          # Sports & extracurriculars
-│   │   ├── Achievements.tsx     # Student achievements
-│   │   ├── News.tsx            # News & events
-│   │   ├── Admissions.tsx       # Admission process & dates
-│   │   └── Footer.tsx          # Footer with links & contact
-├── public/                      # Static assets (favicon, etc.)
-├── tailwind.config.ts          # Tailwind CSS configuration
-├── tsconfig.json               # TypeScript configuration
+├── app/
+│   ├── layout.tsx              # Root layout with metadata & suppressHydrationWarning
+│   ├── page.tsx                # Main landing page
+│   ├── globals.css             # Global styles & Tailwind directives
+│   └── staff-login/
+│       └── page.tsx            # Staff login portal page
+├── components/
+│   ├── Navbar.tsx              # Dual-header sticky navbar with scroll detection
+│   ├── Hero.tsx                # Hero section with campus image & CTAs
+│   ├── QuickActions.tsx         # Quick navigation cards
+│   ├── Stats.tsx               # Statistics: 3000+ students, 400+ faculty, 75% IIT success
+│   ├── About.tsx               # Why Choose SBPS section
+│   ├── Academics.tsx           # Academic programs showcase
+│   ├── IITNDASection.tsx        # IIT/NDA preparation details
+│   ├── Sports.tsx              # Sports & extracurriculars
+│   ├── Achievements.tsx         # Student achievements
+│   ├── News.tsx                # News & events
+│   ├── Admissions.tsx           # Admission process & dates
+│   └── Footer.tsx              # Footer with SBPS logo & contact info
+├── public/
+│   └── sbps-school.png         # Hero section background image
+├── .npmrc                       # npm config with legacy-peer-deps=true
+├── tailwind.config.ts          # Tailwind CSS configuration with custom colors
+├── tsconfig.json               # TypeScript strict mode configuration
 ├── next.config.ts              # Next.js configuration
 └── package.json
 ```
@@ -43,32 +47,47 @@ sbps-website/
 
 | Layer | Technology |
 |-------|-----------|
-| **Frontend** | Next.js 15 + React 19 + TypeScript |
-| **Styling** | Tailwind CSS + Custom utilities |
-| **Icons** | Lucide React |
-| **Deployment** | Vercel (recommended) or any Node.js host |
+| **Framework** | Next.js 16.4.0 |
+| **Runtime** | React 19.3.0 + TypeScript 5.5.4 |
+| **Styling** | Tailwind CSS 3.4.13 + Autoprefixer |
+| **Icons** | Lucide React 0.416.0 |
+| **Build Tools** | Tailwind Turbopack 4.0.13 |
+| **Deployment** | Vercel (recommended) or Node.js hosting |
 
 ## 🎨 Design System
 
-### Color Palette
+### Color Palette (Tailwind Config)
 ```
-Primary:    #1F5E3B (Deep Green - trust, growth)
-Secondary:  #5E9B73 (Light Green - harmony)
-Accent:     #C8372D (Red - urgency, importance)
-Background: #F8F6F0 (Warm White - clarity)
-Alt BG:     #E6F0E9 (Light Green - subtle)
-Text:       #1A1D1B (Near Black - readability)
-Muted:      #5C665F (Grey - secondary text)
-Border:     #DAD8CF (Light Grey - separation)
+Primary:    #1F5E3B (Deep Green - headings, main actions)
+Secondary:  #5E9B73 (Light Green - hover states, secondary elements)
+Accent:     #C8372D (Red - CTAs, Staff Login button, active nav links)
+Background: #F8F6F0 (Warm White - page background)
+Alt BG:     #E6F0E9 (Light Green - stats section, alternate backgrounds)
+Text:       #1A1D1B (Near Black - main text, high contrast)
+Text Muted: #5C665F (Grey - secondary text, descriptions)
+Border:     #DAD8CF (Light Grey - card borders, separators)
 ```
+
+### Custom SVG Logo
+- Shield shape with white color
+- Green book symbol inside
+- Red accent circle for branding
+- Used in navbar (red circular background) and footer
 
 ### Typography
 - **Display**: Merriweather (serif) - headings, impact
 - **Body**: Inter (sans-serif) - clarity, readability
 
-### Key Components
+### Animations & Transitions
+- **Fast**: 200ms (hover effects, quick interactions)
+- **Base**: 300ms (standard transitions, smooth movements)
+- **Slow**: 500ms (complex animations, page transitions)
+- Includes fade-in, slide-up, and scale animations
+
+### Key UI Elements
 - Responsive grid layouts (1 col mobile → 2/3/4 cols desktop)
-- Card-based design with hover states
+- Card-based design with hover states and shadows
+- Rounded corners (lg) on cards and buttons
 - Accessible color contrast ratios (WCAG AA+)
 - Mobile-first responsive approach
 
@@ -88,10 +107,38 @@ Border:     #DAD8CF (Light Grey - separation)
 
 ## 🚀 Key Features
 
-### 1. **Information Architecture**
-Reorganized from information-heavy to user-intent driven:
+### 1. **Dual-Header Sticky Navbar**
+- Top header: Primary green background with red accent border, school logo in red circle, and school name/CBSE affiliation info
+- Bottom navigation: Dark grey background with navigation links and Staff Login button
+- Scroll-based active link detection (updates which link is highlighted based on viewport position)
+- Mobile hamburger menu (hidden on desktop, visible on mobile with dropdown from top header)
+- Smooth animations and hover effects with red underline animation on active links
+
+### 2. **Hero Section**
+- Large, responsive campus image (sbps-school.png) with gradient overlay
+- Center-aligned headline on mobile, left-aligned on desktop
+- CTAs: "Start Your Journey" (primary green) and "Explore the School" (secondary button)
+- Mobile-first responsive with image scaling on hover
+
+### 3. **Statistics Dashboard (New Component)**
+- "By the Numbers" section with 3 stat cards
+- 3000+ Students, 400+ Faculty & Staff, 75% IIT Success Rate
+- Card-based layout with icons and hover effects
+- Light green background section
+- Positioned after Quick Actions, before About
+
+### 4. **Staff Login Portal**
+- Separate route: `/staff-login`
+- Email and password form inputs with icons
+- "Remember me" checkbox, "Forgot password?" link
+- Red accent button styling
+- Security disclaimer at bottom
+- Help section with IT support email
+
+### 5. **Information Architecture**
 - **Hero**: Clear identity & CTAs
-- **Quick Actions**: Fast navigation to key areas
+- **Quick Actions**: Fast navigation cards
+- **Stats**: Key metrics & numbers
 - **About**: Why Choose SBPS
 - **Academics**: Core curriculum + IIT/Engineering + NDA
 - **IIT/NDA**: Dedicated competitive prep section
@@ -99,110 +146,159 @@ Reorganized from information-heavy to user-intent driven:
 - **Achievements**: Student success stories
 - **News & Events**: Latest updates
 - **Admissions**: Clear process & important dates
-- **Footer**: Links, contact, social media
+- **Footer**: SBPS logo, links, contact, social media
 
-### 2. **Visual Hierarchy**
-- Primary color (#1F5E3B) for main actions and headings
-- Secondary color (#5E9B73) for hover states and accents
-- Accent color (#C8372D) for critical information
-- Whitespace to reduce visual noise
-- Typography scale: Display → Heading 2 → Heading 3 → Body
+### 6. **Visual Design**
+- Primary green for main headings and buttons
+- Red accent for CTAs, active states, and important information
+- Subtle red accent backgrounds (0.02-0.6 opacity)
+- Consistent spacing and padding throughout
+- Smooth transitions on all interactive elements
+- Box shadows on hover for depth
 
-### 3. **Accessibility**
+### 7. **Mobile Responsiveness**
+- **Mobile-first approach**: Designed for 320px and up
+- **Hamburger menu**: Navigation on small screens
+- **Flexible layouts**: Stacked cards on mobile, grid on desktop
+- **Touch-friendly**: Buttons and links sized for touch (44x44px minimum)
+- **Readable text**: 16px+ on mobile, proper line-height
+
+### 8. **Accessibility**
 - Semantic HTML (header, nav, main, section, article, footer)
-- ARIA labels and roles throughout
+- ARIA labels on buttons and interactive elements
 - Keyboard navigation support
 - Color contrast ratios meet WCAG AA standards
-- Alt text placeholders for images
-- Skip-to-main-content link
+- Alt text and aria-label attributes
+- Proper heading hierarchy (h1, h2, h3)
+- Screen reader friendly
 
-### 4. **SEO Optimization**
-- **Meta tags**: Title, description, keywords
-- **Open Graph**: Social media sharing support
-- **Twitter Card**: Tweet preview optimization
-- **Semantic HTML**: Proper heading hierarchy (h1, h2, h3)
-- **Structured data**: Schema markup ready
-- **Mobile-friendly**: Responsive design built-in
-- **Fast performance**: Optimized Next.js build
-- **Internal linking**: Navigation between sections
+### 9. **SEO Optimization**
+- Meta tags: Title, description, keywords, author
+- Open Graph tags for social media sharing
+- Twitter Card meta tags
+- Semantic HTML structure
+- Proper heading hierarchy
+- Mobile-friendly responsive design
+- Fast performance (optimized Next.js build)
 
-### 5. **Performance**
+### 10. **Performance**
 - Static site generation with Next.js
-- Optimized CSS with Tailwind
-- Lucide icons (lightweight SVG)
+- Optimized CSS with Tailwind (purged unused styles in production)
+- Lightweight SVG icons (Lucide React)
+- Image optimization ready (Next.js Image component)
 - Code splitting per component
-- Responsive images ready for integration
 - Lazy loading support
+- Production bundle: ~119 kB First Load JS
 
 ## 📋 Installation & Setup
 
 ### Prerequisites
 - Node.js 18+ 
-- npm or yarn
+- npm 9+ or yarn 4+
 
-### Steps
+### Quick Start
 
-1. **Clone/Extract Project**
+1. **Clone the Repository**
    ```bash
-   cd sbps-website
+   git clone https://github.com/Sneha-Nahak/Ikkashin-Tech-Assignment.git
+   cd Ikkashin-Tech-Assignment/sbps-website
    ```
 
 2. **Install Dependencies**
    ```bash
    npm install
-   # or
-   yarn install
+   # Note: .npmrc file includes legacy-peer-deps=true to handle peer dependency conflicts
    ```
 
 3. **Run Development Server**
    ```bash
    npm run dev
-   # or
-   yarn dev
    ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser
+   Open [http://localhost:3001](http://localhost:3001) in your browser
+   (Port 3001 is used if 3000 is already in use)
 
 4. **Build for Production**
    ```bash
    npm run build
    npm start
-   # or
-   yarn build
-   yarn start
    ```
 
-## 🚢 Deployment
+5. **Lint & Type Check**
+   ```bash
+   npm run lint
+   ```
 
-### Vercel (Recommended)
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-### Docker
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
-CMD ["npm", "start"]
-```
-
-### Traditional Hosting (Node.js)
-```bash
-npm run build
-npm start
-```
-
-Environment variables (if needed):
+### Environment Setup
+No environment variables required for the static site. For future backend integration, add a `.env.local` file:
 ```
 NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 ```
+
+## 🚢 Deployment
+
+### Vercel (Recommended - Easiest)
+
+Automatically detects Next.js and deploys with zero configuration.
+
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Deploy to Vercel"
+   git push origin main
+   ```
+
+2. **Connect to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Vercel automatically detects Next.js settings
+   - Deploy with a single click
+
+3. **Custom Domain**
+   - Add custom domain in Vercel dashboard
+   - Update DNS records
+   - Get automatic HTTPS certificate
+
+### Manual Deployment (Node.js Hosting)
+
+For services like Heroku, DigitalOcean, AWS, etc.:
+
+```bash
+# Build the project
+npm run build
+
+# Start the production server
+npm start
+```
+
+**Procfile** (for Heroku):
+```
+web: npm start
+```
+
+**Dockerfile** (for container deployment):
+```dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+ENV NODE_ENV=production
+CMD ["npm", "start"]
+
+EXPOSE 3000
+```
+
+### Environment Configuration
+The `.npmrc` file includes `legacy-peer-deps=true` to handle peer dependency resolution during deployment.
+
+**Important:** Ensure your deployment environment uses:
+- Node.js 18+
+- `npm install` (uses .npmrc automatically)
 
 ## 🔄 Dummy Data Integration
 
@@ -281,33 +377,103 @@ From the proposal:
 
 ## 📝 Development Notes
 
+### Hydration & Client Components
+- **Navbar.tsx**: Client component with scroll detection (useEffect for event listeners)
+- **Footer.tsx**: Client component for current year calculation (prevents hydration mismatch)
+- **Stats.tsx**: Server-rendered static component (no client logic)
+- All other components: Server-rendered for optimal performance
+
+### Hydration Mismatch Fixes Applied
+- Initial state values match between server and client
+- useEffect hooks properly initialize state before rendering
+- No dynamic content (Math.random, Date) rendered directly in JSX
+- Root layout uses `suppressHydrationWarning` for expected responsive behavior mismatches
+
 ### Component Architecture
-- All components are client/server safe (proper 'use client' usage)
+- Functional components with TypeScript interfaces
+- Props-based customization
 - Reusable Tailwind utility classes
-- Consistent spacing system (4px base unit)
-- Color palette variables in Tailwind config
+- Consistent spacing system (4px base unit, scaled to 8, 12, 16, 24, 32px)
+- Custom animations defined in Tailwind config
+
+### Tailwind Configuration
+- Extends default config with custom colors
+- Animation definitions: fast (200ms), base (300ms), slow (500ms)
+- Custom gradient backgrounds with red accent
+- Typography scale for responsive text sizing
 
 ### Styling Approach
 - Utility-first with Tailwind CSS
-- Custom components in `globals.css`
-- No CSS files needed for individual components
-- Easy to theme/update via `tailwind.config.ts`
+- No CSS-in-JS or separate CSS files
+- Global styles in `globals.css` (reset, Tailwind directives, animations)
+- Theme colors referenced from `tailwind.config.ts`
+- Easy to update colors/animations via config file
 
-### Performance Tips
-- Images: Use Next.js `Image` component when adding real images
-- Fonts: Google Fonts preconnected in layout
-- Icons: Lucide React (lightweight SVG)
-- CSS: Tailwind purges unused styles in production
+### TypeScript Strict Mode
+- Enabled in `tsconfig.json`
+- No `any` types - full type safety
+- Proper React component typing
+
+### Performance Tips for Extending
+1. **Images**: Use Next.js `Image` component (automatic optimization)
+2. **Fonts**: Google Fonts preconnected in layout
+3. **Icons**: Lucide React (lightweight, tree-shakeable)
+4. **CSS**: Tailwind purges unused styles automatically in production
+5. **Code Splitting**: Each component is automatically code-split
+6. **Images**: Lazy loading support built-in with Next.js Image
+
+### Responsive Breakpoints (Tailwind)
+- **sm**: 640px (tablets)
+- **md**: 768px (medium tablets/small desktops)
+- **lg**: 1024px (desktops)
+- **xl**: 1280px (large desktops)
+
+## 📦 Dependency Management
+
+### Current Dependencies
+```json
+{
+  "next": "16.4.0",           // React framework with SSG/SSR
+  "react": "19.3.0",          // Latest React with new features
+  "react-dom": "19.3.0",      // React rendering
+  "typescript": "5.5.4",      // Type safety
+  "tailwindcss": "3.4.13",    // Utility CSS framework
+  "@tailwindcss/turbopack": "4.0.13", // Turbopack integration
+  "lucide-react": "0.416.0",  // Icon library
+  "autoprefixer": "10.6.1",   // CSS vendor prefixes
+}
+```
+
+### .npmrc Configuration
+The `.npmrc` file contains:
+```
+legacy-peer-deps=true
+```
+
+This allows npm to install packages with peer dependency conflicts during deployment on services like Vercel.
+
+### Updating Dependencies
+To update dependencies safely:
+```bash
+npm update                    # Updates to compatible versions
+npm outdated                  # Shows outdated packages
+npm audit                     # Shows security vulnerabilities
+npm audit fix                 # Fixes known vulnerabilities
+```
 
 ## 🤝 Contributing
 
 When extending the project:
 1. Follow TypeScript strict mode
-2. Use semantic HTML
-3. Maintain accessibility standards
-4. Keep components focused and reusable
-5. Update this README with changes
-6. Test on mobile devices
+2. Use semantic HTML and proper heading hierarchy
+3. Maintain accessibility standards (WCAG AA+)
+4. Use Tailwind utility classes (no new CSS files)
+5. Test on mobile devices and multiple screen sizes
+6. Keep components focused and reusable
+7. Update color values through `tailwind.config.ts` only
+8. Test scroll detection and navigation on mobile browsers
+9. Verify hydration (no console errors)
+10. Update this README with new features/components
 
 ## 📞 Contact Information
 
@@ -319,10 +485,18 @@ When extending the project:
 
 ## 📄 License
 
-This website redesign is proprietary work for Social Baluni Public School prepared by Ikkashin Technologies Pvt. Ltd.
+This website redesign is proprietary work for Social Baluni Public School.
+
+## 🔗 Live Demo
+
+- **Production**: Available on Vercel at your-vercel-url.vercel.app
+- **Development**: Run `npm run dev` and open [http://localhost:3001](http://localhost:3001)
 
 ---
 
-**Built with ❤️ using Next.js + TypeScript + Tailwind CSS**
+**Built with ❤️ by Ikkashin Technologies**
 
-*Last Updated: December 2024*
+Tech Stack: Next.js 16 • React 19 • TypeScript 5 • Tailwind CSS 3 • Lucide React
+
+*Last Updated: October 2024*
+*Project Status: ✅ Production Ready*
