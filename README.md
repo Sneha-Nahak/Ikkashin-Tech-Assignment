@@ -4,7 +4,7 @@
 
 ## 🎯 Project Overview
 
-This project delivers a complete website restructuring for Social Baluni Public School (SBPS), implementing the design principles outlined in the proposal: **"Clarity over clutter. Hierarchy over decoration."**
+This project delivers a complete website restructuring for Social Baluni Public School (SBPS), implementing the design principles: **"Clarity over clutter. Hierarchy over decoration."**
 
 The website serves as a digital platform representing:
 - **3,000+ students** across three schools (Boarding, Defence Academy, IIT/NEET)
